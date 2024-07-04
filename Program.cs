@@ -52,12 +52,36 @@ namespace FlightManagementSystem
         /// </summary>
         private static void SaveFlights()
         {
-            throw new NotImplementedException();
+            StreamWriter writer = new StreamWriter(filePath);
+            using (writer)
+            {
+                foreach (Flight flight in flights)
+                {
+                    writer.WriteLine(flight);
+                }
+            }
         }
 
         private static void LoadFligths()
         {
-            throw new NotImplementedException();
+            StreamReader reader = new StreamReader(filePath);
+            using (reader)
+            {
+                string line;
+                while ((line = Console.ReadLine()) != null)
+                {
+                    string[] flightInfo = line.Split(',').ToArray();
+                    string flightId = flightInfo[0];
+                    string destination = flightInfo[1];
+                    DateTime departureTime = Convert.ToDateTime(flightInfo[2]);
+                    DateTime arrivalTime = Convert.ToDateTime(flightInfo[3]);
+                    int seatsAvailable = int.Parse(flightInfo[4]);
+                    decimal price = decimal.Parse(flightInfo[5]);   
+
+                    Flight currentFlight = new Flight(flightId,destination,departureTime,arrivalTime,seatsAvailable, price);
+                    flights.Add(currentFlight);
+                }
+            }
         }
 
         private static void Exit()
