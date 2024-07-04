@@ -63,14 +63,6 @@ namespace FlightManagementSystem
             }
         }
 
-        private static void ShowActionTitle(string title)
-        {
-            Console.Clear();
-            AddLine();
-            Console.WriteLine("\t" + title);
-            AddLine();
-        }
-
         private static void LoadFlights()
         {
             StreamReader reader = new StreamReader(filePath, Encoding.Unicode);
@@ -144,7 +136,7 @@ namespace FlightManagementSystem
             flights.Add(newFlight);
             SaveFlights();
 
-            Console.WriteLine($"Полет с номер {flightId} за {destination} е добавен успешно.");
+            ShowResultMessage($"Полет с номер {flightId} за {destination} е добавен успешно.");
 
             BackToMenu();
         }
@@ -180,6 +172,20 @@ namespace FlightManagementSystem
             {
                 Console.WriteLine(Environment.NewLine);
             }
+        }
+
+        private static void ShowActionTitle(string title)
+        {
+            Console.Clear();
+            AddLine();
+            Console.WriteLine("\t" + title);
+            AddLine();
+        }
+
+        private static void ShowResultMessage(string message)
+        {
+            AddLine();
+            Console.WriteLine("\t" + message);
         }
     }
 }
