@@ -52,7 +52,14 @@ namespace FlightManagementSystem
         /// </summary>
         private static void SaveFlight()
         {
-            throw new NotImplementedException();
+            StreamWriter writer = new StreamWriter(filePath);
+            using (writer)
+            {
+                foreach (Flight flight in flights)
+                {
+                    writer.WriteLine(flight);
+                }
+            }
         }
 
         private static void LoadFligths()
