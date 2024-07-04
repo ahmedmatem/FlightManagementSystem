@@ -30,8 +30,22 @@ namespace FlightManagementSystem
             Destination = destination;
             DepartureTime = departureTime;
             ArrivalTime = arrivalTime;
-            this.SeatsAvailable = seatsAvailable;
+            SeatsAvailable = seatsAvailable;
             Price = price;
+        }
+        public override string ToString()
+        {
+            return $"{FlightID},{Destination},{DepartureTime.ToString("dd-MM-yy hh:mm")},{ArrivalTime.ToString("dd-MM-yy hh:mm")},{SeatsAvailable},{Price}";
+        }
+        public void DecreaseSeats(int ticketsCount)
+        {
+            if (SeatsAvailable<ticketsCount)
+            {
+                Console.WriteLine("Няма толкова налични билети.");
+                return;
+            }
+            SeatsAvailable -= ticketsCount;
+            //todo: messige to be preint
         }
     }
 }
