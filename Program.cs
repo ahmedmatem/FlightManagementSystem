@@ -110,6 +110,17 @@ namespace FlightManagementSystem
 
             flights.Add(newFlight);
             SaveFlights();
+
+            Console.WriteLine($"Полет с номер {flightId} за {destination} е добавен успешно.");
+
+            BackToMenu();
+        }
+
+        private static void BackToMenu()
+        {
+            Console.Write("Натисни произвлен клавиш обратно към МЕНЮ: ");
+            Console.ReadLine();
+            PrintMenu();
         }
 
         private static void PrintMenu()
