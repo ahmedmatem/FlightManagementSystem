@@ -65,7 +65,25 @@
         {
             Console.Clear();
 
-            throw new NotImplementedException();
+            Console.WriteLine("\tМ Е Н Ю");
+            AddLine(2);
+            Console.WriteLine("\tМоля изберете желаното действие:");
+            AddLine(2);
+            Console.WriteLine("\t[1]: Нов полет");
+            Console.WriteLine("\t[2]: Купи билет");
+            Console.WriteLine("\t[3]: Търсене на полет");
+            Console.WriteLine("\t[4]: Справка на свички полети");
+            Console.WriteLine("\t[x]: Изход от програмата");
+            AddLine(2);
+            Console.Write("\tВашият избор: ");
+        }
+
+        private static void AddLine(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine(Environment.NewLine);
+            }
         }
     }
 }
