@@ -62,7 +62,7 @@ namespace FlightManagementSystem
             }
         }
 
-        private static void LoadFligths()
+        private static void LoadFlights()
         {
             StreamReader reader = new StreamReader(filePath, Encoding.Unicode);
             using (reader)
