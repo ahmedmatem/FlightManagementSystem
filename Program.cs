@@ -50,7 +50,7 @@ namespace FlightManagementSystem
         /// <summary>
         /// Saves all the fligths in the list of fligths into file.
         /// </summary>
-        private static void SaveFlight()
+        private static void SaveFlights()
         {
             StreamWriter writer = new StreamWriter(filePath);
             using (writer)
@@ -106,7 +106,34 @@ namespace FlightManagementSystem
 
         private static void AddNewFlight()
         {
-            throw new NotImplementedException();
+            Console.Write("Номер на полет: ");
+            string flightId = Console.ReadLine();
+
+            Console.Write("Дестинация: ");
+            string destination = Console.ReadLine();
+
+            Console.Write("Час на заминаване{дд-мм-гг чч:мм}: ");
+            DateTime departureTime = DateTime.Parse(Console.ReadLine());
+
+            Console.Write("Час на пристигане{дд-мм-гг чч:мм}: ");
+            DateTime arrivalTime = DateTime.Parse(Console.ReadLine());
+
+            Console.Write("Брой места: ");
+            int seatsAvailable = int.Parse(Console.ReadLine());
+
+            Console.Write("Цена на полета: ");
+            decimal price = decimal.Parse(Console.ReadLine());
+
+            Flight newFlight = new Flight(
+                flightId,
+                destination,
+                departureTime,
+                arrivalTime,
+                seatsAvailable, 
+                price);
+
+            flights.Add(newFlight);
+            SaveFlights();
         }
 
         private static void PrintMenu()
