@@ -26,7 +26,7 @@ namespace FlightManagementSystem
                 switch(menuActionChoice)
                 {
                     case "1":
-                        AddLine();
+                        ShowActionTitle("Създаване на нов полет");
                         AddNewFlight();
                         break;
                     case "2":
@@ -68,6 +68,7 @@ namespace FlightManagementSystem
             Console.Clear();
             AddLine();
             Console.WriteLine("\t" + title);
+            AddLine();
         }
 
         private static void LoadFlights()
