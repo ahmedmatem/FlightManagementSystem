@@ -1,4 +1,6 @@
-﻿namespace FlightManagementSystem
+﻿using System.Text;
+
+namespace FlightManagementSystem
 {
     #nullable disable
 
@@ -9,6 +11,12 @@
 
         static void Main(string[] args)
         {
+            // Console configuration
+            Console.InputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.UTF8;
+
+            PrintMenu();
+
             while(true)
             {
                 menuActionChoice = Console.ReadLine();
