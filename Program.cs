@@ -106,22 +106,22 @@ namespace FlightManagementSystem
 
         private static void AddNewFlight()
         {
-            Console.Write("Номер на полет: ");
+            Console.Write("\tНомер на полет: ");
             string flightId = Console.ReadLine();
 
-            Console.Write("Дестинация: ");
+            Console.Write("\tДестинация: ");
             string destination = Console.ReadLine();
 
-            Console.Write("Час на заминаване{дд-мм-гг чч:мм}: ");
+            Console.Write("\tДата и час на заминаване{дд-мм-гг чч:мм}: ");
             DateTime departureTime = DateTime.Parse(Console.ReadLine());
 
-            Console.Write("Час на пристигане{дд-мм-гг чч:мм}: ");
+            Console.Write("\tДата и час на пристигане{дд-мм-гг чч:мм}: ");
             DateTime arrivalTime = DateTime.Parse(Console.ReadLine());
 
-            Console.Write("Брой места: ");
+            Console.Write("\tБрой места: ");
             int seatsAvailable = int.Parse(Console.ReadLine());
 
-            Console.Write("Цена на полета: ");
+            Console.Write("\tЦена на полета: ");
             decimal price = decimal.Parse(Console.ReadLine());
 
             Flight newFlight = new Flight(
@@ -151,20 +151,21 @@ namespace FlightManagementSystem
         {
             Console.Clear();
 
+            AddLine();
             Console.WriteLine("\tМ Е Н Ю");
-            AddLine(2);
+            AddLine();
             Console.WriteLine("\tМоля изберете желаното действие:");
-            AddLine(2);
+            AddLine();
             Console.WriteLine("\t[1]: Нов полет");
             Console.WriteLine("\t[2]: Купи билет");
             Console.WriteLine("\t[3]: Търсене на полет");
             Console.WriteLine("\t[4]: Справка на свички полети");
             Console.WriteLine("\t[x]: Изход от програмата");
-            AddLine(2);
+            AddLine();
             Console.Write("\tВашият избор: ");
         }
 
-        private static void AddLine(int count)
+        private static void AddLine(int count = 1)
         {
             for (int i = 0; i < count; i++)
             {
