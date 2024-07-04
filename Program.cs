@@ -15,8 +15,8 @@ namespace FlightManagementSystem
         static void Main(string[] args)
         {
             // Console configuration
-            Console.InputEncoding = Encoding.UTF8;
-            Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.Unicode;
+            Console.OutputEncoding = Encoding.Unicode;
 
             PrintMenu();
 
@@ -52,7 +52,7 @@ namespace FlightManagementSystem
         /// </summary>
         private static void SaveFlights()
         {
-            StreamWriter writer = new StreamWriter(filePath);
+            StreamWriter writer = new StreamWriter(filePath, false, Encoding.Unicode);
             using (writer)
             {
                 foreach (Flight flight in flights)
@@ -64,7 +64,7 @@ namespace FlightManagementSystem
 
         private static void LoadFligths()
         {
-            StreamReader reader = new StreamReader(filePath);
+            StreamReader reader = new StreamReader(filePath, Encoding.Unicode);
             using (reader)
             {
                 string line;
