@@ -63,6 +63,8 @@
 
         private static void PrintMenu()
         {
+            Console.Clear();
+
             throw new NotImplementedException();
         }
     }
