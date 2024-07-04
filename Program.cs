@@ -143,7 +143,8 @@ namespace FlightManagementSystem
 
         private static void BackToMenu()
         {
-            Console.Write("Натисни произвлен клавиш обратно към МЕНЮ: ");
+            AddLine();
+            Console.Write("\tНатисни произвлен клавиш обратно към МЕНЮ: ");
             Console.ReadLine();
             PrintMenu();
         }
