@@ -6,8 +6,11 @@ namespace FlightManagementSystem
 
     public class Program
     {
-        private static string menuActionChoice;
         private const string filePath = "../../../flights.txt";
+
+        private static List<Flight> flights = new List<Flight> ();
+        private static string menuActionChoice;
+        
 
         static void Main(string[] args)
         {
@@ -42,6 +45,19 @@ namespace FlightManagementSystem
                         break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Saves all the fligths in the list of fligths into file.
+        /// </summary>
+        private static void SaveFlight()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void LoadFligths()
+        {
+            throw new NotImplementedException();
         }
 
         private static void Exit()
