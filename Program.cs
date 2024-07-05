@@ -107,12 +107,12 @@ namespace FlightManagementSystem
 
         private static void PrintFlightInfo(Flight flight)
         {
-            Console.WriteLine($"Номер на полета: {flight.FlightID}");
-            Console.WriteLine($"До: {flight.Destination}");
-            Console.WriteLine($"Излитане: {flight.DepartureTime.ToString("dd/MM/yy hh:mm")}");
-            Console.WriteLine($"Кацане: {flight.ArrivalTime.ToString("dd/MM/yy hh:mm")}");
-            Console.WriteLine($"Свободни места: {flight.SeatsAvailable}");
-            Console.WriteLine($"Цена: {flight.Price}");
+            Console.WriteLine($"\tНомер на полета: {flight.FlightID}");
+            Console.WriteLine($"\tДо: {flight.Destination}");
+            Console.WriteLine($"\tИзлитане: {flight.DepartureTime.ToString("dd/MM/yy hh:mm")}");
+            Console.WriteLine($"\tКацане: {flight.ArrivalTime.ToString("dd/MM/yy hh:mm")}");
+            Console.WriteLine($"\tСвободни места: {flight.SeatsAvailable}");
+            Console.WriteLine($"\tЦена: {flight.Price}");
         }
 
         private static void SearchFlight()
