@@ -24,7 +24,7 @@ namespace FlightManagementSystem
             private set
             {
                 TimeSpan difference = value - DepartureTime;
-                if (difference.Minutes <= 0)
+                if (difference.Days+difference.Hours + difference.Minutes <= 0)
                 {
                     throw new ArgumentException("Часа на пристигане трябва да е по напред от часа на тръгване");
                 }

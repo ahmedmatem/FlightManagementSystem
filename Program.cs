@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 
 namespace FlightManagementSystem
 {
@@ -78,8 +79,8 @@ namespace FlightManagementSystem
                     string[] flightInfo = line.Split(',');
                     string flightId = flightInfo[0];
                     string destination = flightInfo[1];
-                    DateTime departureTime = Convert.ToDateTime(flightInfo[2]);
-                    DateTime arrivalTime = Convert.ToDateTime(flightInfo[3]);
+                    DateTime departureTime = DateTime.ParseExact(flightInfo[2], "dd-MM-yy hh:mm",CultureInfo.InvariantCulture);
+                    DateTime arrivalTime = DateTime.ParseExact(flightInfo[3], "dd-MM-yy hh:mm", CultureInfo.InvariantCulture);
                     int seatsAvailable = int.Parse(flightInfo[4]);
                     decimal price = decimal.Parse(flightInfo[5]);   
 
@@ -109,8 +110,8 @@ namespace FlightManagementSystem
         {
             Console.WriteLine($"\tНомер на полета: {flight.FlightID}");
             Console.WriteLine($"\tДо: {flight.Destination}");
-            Console.WriteLine($"\tИзлитане: {flight.DepartureTime.ToString("dd/MM/yy hh:mm")}");
-            Console.WriteLine($"\tКацане: {flight.ArrivalTime.ToString("dd/MM/yy hh:mm")}");
+            Console.WriteLine($"\tИзлитане: {flight.DepartureTime.ToString("dd-MM-yy hh:mm")}");
+            Console.WriteLine($"\tКацане: {flight.ArrivalTime.ToString("dd-MM-yy hh:mm")}");
             Console.WriteLine($"\tСвободни места: {flight.SeatsAvailable}");
             Console.WriteLine($"\tЦена: {flight.Price}");
         }
