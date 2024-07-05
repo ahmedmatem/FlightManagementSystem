@@ -8,20 +8,26 @@ namespace FlightManagementSystem
 {
     public class Flight
     {
-        /*
-         •	flightID: уникален идентификатор на полета (низ или цяло число)
-•	destination: дестинация на полета (низ)
-•	departureTime: време на излитане (дата и/или време, може и низ)
-•	arrivalTime: време на пристигане (дата и/или време, може и низ)
-•	seatsAvailable: налични места (цяло число)
-•	price: цена на билет за полета (дробно число)
+        private int seatsAvailable;
 
-         */
         public string FlightID { get; private set; }
         public string Destination { get; private set; }
         public DateTime DepartureTime { get; private set; }
         public DateTime ArrivalTime { get; private set; }
-        public int SeatsAvailable { get; private set; }
+        public int SeatsAvailable {
+            get
+            {
+                return seatsAvailable;
+            }
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Наличните места трябва да са положителни!");
+                }
+                seatsAvailable = value;
+            } 
+        }
         public decimal Price { get; private set; }
 
         public Flight(string flightID, string destination, DateTime departureTime, DateTime arrivalTime, int seatsAvailable, decimal price)
