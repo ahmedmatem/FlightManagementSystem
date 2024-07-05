@@ -36,6 +36,7 @@ namespace FlightManagementSystem
                         BuyTicket();
                         break;
                     case "3":
+                        ShowActionTitle("Търсене на полет по номер или дестинация");
                         SearchFlight();
                         break;
                     case "4":
@@ -117,7 +118,15 @@ namespace FlightManagementSystem
 
         private static void SearchFlight()
         {
-            throw new NotImplementedException();
+            Console.Write("\tВъведете номер или дестинация на полет: ");
+            string filter = Console.ReadLine();
+            AddLine();
+
+            Flight searchedFlight = flights
+                .FirstOrDefault(f => f.FlightID == filter || f.Destination == filter);
+
+
+            BackToMenu();
         }
 
         private static void BuyTicket()
