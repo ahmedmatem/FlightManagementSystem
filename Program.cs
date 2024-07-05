@@ -143,20 +143,27 @@ namespace FlightManagementSystem
             int seatsAvailable = int.Parse(Console.ReadLine());
 
             Console.Write("\tЦена на полета: ");
-            decimal price = decimal.Parse(Console.ReadLine());
+            decimal price = decimal.Parse(Console.ReadLine());            
 
-            Flight newFlight = new Flight(
+            try
+            {
+                Flight newFlight = new Flight(
                 flightId,
                 destination,
                 departureTime,
                 arrivalTime,
-                seatsAvailable, 
+                seatsAvailable,
                 price);
 
-            flights.Add(newFlight);
-            SaveFlights();
+                flights.Add(newFlight);
+                SaveFlights();
 
-            ShowResultMessage($"Полет с номер {flightId} за {destination} е добавен успешно.");
+                ShowResultMessage($"Полет с номер {flightId} за {destination} е добавен успешно.");
+            }
+            catch (ArgumentException)
+            {
+                ShowResultMessage($"Невалидни данни за полет");
+            }            
 
             BackToMenu();
         }
