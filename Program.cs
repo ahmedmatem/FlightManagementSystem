@@ -127,6 +127,10 @@ namespace FlightManagementSystem
             Flight searchedFlight = flights
                 .FirstOrDefault(f => f.FlightID == filter || f.Destination == filter);
 
+            if(searchedFlight != null)
+            {
+                PrintFlightInfo(searchedFlight);
+            }
 
             BackToMenu();
         }
