@@ -9,11 +9,28 @@ namespace FlightManagementSystem
     public class Flight
     {
         private int seatsAvailable;
+        private decimal price;
+        private DateTime arrivalTime;
 
         public string FlightID { get; private set; }
         public string Destination { get; private set; }
         public DateTime DepartureTime { get; private set; }
-        public DateTime ArrivalTime { get; private set; }
+        public DateTime ArrivalTime 
+        {
+            get
+            {
+                return arrivalTime;
+            }
+            private set
+            {
+                TimeSpan difference = value - DepartureTime;
+                if (difference.Minutes <= 0)
+                {
+                    throw new ArgumentException("Часа на пристигане трябва да е по напред от часа на тръгване");
+                }
+                arrivalTime = value;
+            }
+        }
         public int SeatsAvailable {
             get
             {
@@ -28,7 +45,19 @@ namespace FlightManagementSystem
                 seatsAvailable = value;
             } 
         }
-        public decimal Price { get; private set; }
+        public decimal Price { 
+            get
+            {
+                return price;
+            }
+            private set 
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Цената на билета трябва да е  положително число!");
+                }
+            }
+        }
 
         public Flight(string flightID, string destination, DateTime departureTime, DateTime arrivalTime, int seatsAvailable, decimal price)
         {
