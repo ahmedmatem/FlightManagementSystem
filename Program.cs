@@ -20,7 +20,10 @@ namespace FlightManagementSystem
 
             PrintMenu();
 
-            while(true)
+            LoadFlights();
+
+            // MENU
+            while (true)
             {
                 menuActionChoice = Console.ReadLine();
                 switch(menuActionChoice)
@@ -36,6 +39,7 @@ namespace FlightManagementSystem
                         SearchFlight();
                         break;
                     case "4":
+                        ShowActionTitle("Списък на всички полети");
                         ListFlights();
                         break;
                     case "x" or "X":
@@ -69,9 +73,9 @@ namespace FlightManagementSystem
             using (reader)
             {
                 string line;
-                while ((line = Console.ReadLine()) != null)
+                while ((line = reader.ReadLine()) != null)
                 {
-                    string[] flightInfo = line.Split(',').ToArray();
+                    string[] flightInfo = line.Split(',');
                     string flightId = flightInfo[0];
                     string destination = flightInfo[1];
                     DateTime departureTime = Convert.ToDateTime(flightInfo[2]);
@@ -92,7 +96,23 @@ namespace FlightManagementSystem
 
         private static void ListFlights()
         {
-            throw new NotImplementedException();
+            foreach(Flight flight in flights)
+            {
+                PrintFlightInfo(flight);
+                AddLine();
+            }
+
+            BackToMenu();
+        }
+
+        private static void PrintFlightInfo(Flight flight)
+        {
+            Console.WriteLine($"Номер на полета: {flight.FlightID}");
+            Console.WriteLine($"До: {flight.Destination}");
+            Console.WriteLine($"Излитане: {flight.DepartureTime.ToString("dd/MM/yy hh:mm")}");
+            Console.WriteLine($"Кацане: {flight.ArrivalTime.ToString("dd/MM/yy hh:mm")}");
+            Console.WriteLine($"Свободни места: {flight.SeatsAvailable}");
+            Console.WriteLine($"Цена: {flight.Price}");
         }
 
         private static void SearchFlight()
