@@ -214,7 +214,7 @@ namespace FlightManagementSystem
             Console.WriteLine("\t[1]: Нов полет");
             Console.WriteLine("\t[2]: Купи билет");
             Console.WriteLine("\t[3]: Търсене на полет");
-            Console.WriteLine("\t[4]: Справка на свички полети");
+            Console.WriteLine("\t[4]: Справка на всички полети");
             Console.WriteLine("\t[x]: Изход от програмата");
             AddLine();
             Console.Write("\tВашият избор: ");

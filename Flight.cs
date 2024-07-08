@@ -76,6 +76,7 @@ namespace FlightManagementSystem
                 {
                     throw new ArgumentException("Цената на билета трябва да е  положително число!");
                 }
+                price = value;
             }
         }
 
