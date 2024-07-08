@@ -148,11 +148,21 @@ namespace FlightManagementSystem
             Console.Write("\tДестинация: ");
             string destination = Console.ReadLine();
 
-            Console.Write("\tДата и час на заминаване{дд-мм-гг чч:мм}: ");
-            DateTime departureTime = DateTime.Parse(Console.ReadLine());
+            DateTime departureTime = DateTime.Now;
+            DateTime arrivalTime = departureTime;
+            try
+            {
+                Console.Write("\tДата и час на заминаване{дд-мм-гг чч:мм}: ");
+                departureTime = DateTime.Parse(Console.ReadLine());
 
-            Console.Write("\tДата и час на пристигане{дд-мм-гг чч:мм}: ");
-            DateTime arrivalTime = DateTime.Parse(Console.ReadLine());
+                Console.Write("\tДата и час на пристигане{дд-мм-гг чч:мм}: ");
+                arrivalTime = DateTime.Parse(Console.ReadLine());
+            }
+            catch(Exception)
+            {
+                ShowResultMessage("Невалидна дата");
+                BackToMenu();
+            }            
 
             Console.Write("\tБрой места: ");
             int seatsAvailable = int.Parse(Console.ReadLine());
