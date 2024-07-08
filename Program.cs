@@ -52,6 +52,8 @@ namespace FlightManagementSystem
 
                         break;
                 }
+
+                BackToMenu();
             }
         }
 
@@ -105,7 +107,7 @@ namespace FlightManagementSystem
                 AddLine();
             }
 
-            BackToMenu();
+            
         }
 
         private static void PrintFlightInfo(Flight flight)
@@ -142,8 +144,6 @@ namespace FlightManagementSystem
             {
                 ShowResultMessage($"Търсеният полет не е намерен.");
             }
-
-            BackToMenu();
         }
 
         private static void BuyTicket()
@@ -155,6 +155,12 @@ namespace FlightManagementSystem
         {
             Console.Write("\tНомер на полет: ");
             string flightId = Console.ReadLine();
+
+            if(FlightExists(flightId))
+            {
+                ShowResultMessage("Номерът на полета трябва да е уникален.");
+                return;
+            }
 
             Console.Write("\tДестинация: ");
             string destination = Console.ReadLine();
@@ -172,7 +178,7 @@ namespace FlightManagementSystem
             catch(Exception)
             {
                 ShowResultMessage("Невалидна дата");
-                BackToMenu();
+                
                 return;
             }            
 
@@ -202,7 +208,12 @@ namespace FlightManagementSystem
                 ShowResultMessage(е.Message);
             }            
 
-            BackToMenu();
+            
+        }
+
+        private static bool FlightExists(string flightId)
+        {
+            return flights.Any(f => f.FlightID == flightId);
         }
 
         private static void BackToMenu()
