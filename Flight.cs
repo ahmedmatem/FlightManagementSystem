@@ -22,7 +22,7 @@ namespace FlightManagementSystem
                 var now = DateTime.Now;
                 if(value <= now)
                 {
-                    throw new ArgumentException($"{value} трябва да бъде след {now.ToString("dd-MM-yy hh:mm")}");
+                    throw new ArgumentException($"Датата на заминаване ({value}) трябва да бъде след днешната дата - {now.ToString("dd-MM-yy hh:mm")}");
                 }
                 departureTime = value;
             }

@@ -162,6 +162,7 @@ namespace FlightManagementSystem
             {
                 ShowResultMessage("Невалидна дата");
                 BackToMenu();
+                return;
             }            
 
             Console.Write("\tБрой места: ");
@@ -185,9 +186,9 @@ namespace FlightManagementSystem
 
                 ShowResultMessage($"Полет с номер {flightId} за {destination} е добавен успешно.");
             }
-            catch (ArgumentException)
+            catch (ArgumentException е)
             {
-                ShowResultMessage($"Невалидни данни за полет");
+                ShowResultMessage(е.Message);
             }            
 
             BackToMenu();
