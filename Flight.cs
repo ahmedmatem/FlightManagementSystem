@@ -10,11 +10,23 @@ namespace FlightManagementSystem
     {
         private int seatsAvailable;
         private decimal price;
+        private DateTime departureTime;
         private DateTime arrivalTime;
 
         public string FlightID { get; private set; }
         public string Destination { get; private set; }
-        public DateTime DepartureTime { get; private set; }
+        public DateTime DepartureTime {
+            get { return departureTime; }
+            private set
+            {
+                var now = DateTime.Now;
+                if(value <= now)
+                {
+                    throw new ArgumentException($"{value} трябва да бъде след {now.ToString("dd-MM-yy hh:mm")}");
+                }
+                departureTime = value;
+            }
+        }
         public DateTime ArrivalTime 
         {
             get
@@ -23,10 +35,9 @@ namespace FlightManagementSystem
             }
             private set
             {
-                TimeSpan difference = value - DepartureTime;
-                if (difference.Days+difference.Hours + difference.Minutes <= 0)
+                if (value <= departureTime)
                 {
-                    throw new ArgumentException("Часа на пристигане трябва да е по напред от часа на тръгване");
+                    throw new ArgumentException("Датата на пристигане трябва да е след датата на тръгване.");
                 }
                 arrivalTime = value;
             }
