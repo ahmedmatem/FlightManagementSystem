@@ -15,10 +15,13 @@ namespace FlightManagementSystem
 
         public string FlightID { get; private set; }
         public string Destination { get; private set; }
+
+
         public DateTime DepartureTime {
             get { return departureTime; }
             private set
             {
+                // Validation - departure time must be after arrival time
                 var now = DateTime.Now;
                 if(value <= now)
                 {
@@ -27,6 +30,8 @@ namespace FlightManagementSystem
                 departureTime = value;
             }
         }
+
+
         public DateTime ArrivalTime 
         {
             get
@@ -35,6 +40,7 @@ namespace FlightManagementSystem
             }
             private set
             {
+                // Validation - arrival time must be in the future.
                 if (value <= departureTime)
                 {
                     throw new ArgumentException("Датата на пристигане трябва да е след датата на тръгване.");
@@ -47,8 +53,10 @@ namespace FlightManagementSystem
             {
                 return seatsAvailable;
             }
+            
             private set
             {
+                // Validation - seats must be positive number
                 if (value <= 0)
                 {
                     throw new ArgumentException("Наличните места трябва да са положителни!");
@@ -63,6 +71,7 @@ namespace FlightManagementSystem
             }
             private set 
             {
+                // Validation - price must be positive number
                 if (value <= 0)
                 {
                     throw new ArgumentException("Цената на билета трябва да е  положително число!");
@@ -91,7 +100,6 @@ namespace FlightManagementSystem
                 return;
             }
             SeatsAvailable -= ticketsCount;
-            //todo: messige to be preint
         }
     }
 }
