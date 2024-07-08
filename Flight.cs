@@ -8,6 +8,8 @@ namespace FlightManagementSystem
 {
     public class Flight
     {
+        public const string DateTimeFormat = "dd-MM-yy HH:mm";
+
         private int seatsAvailable;
         private decimal price;
         private DateTime departureTime;
@@ -25,7 +27,7 @@ namespace FlightManagementSystem
                 var now = DateTime.Now;
                 if(value <= now)
                 {
-                    throw new ArgumentException($"Датата на заминаване ({value}) трябва да бъде след днешната дата - {now.ToString("dd-MM-yy hh:mm")}");
+                    throw new ArgumentException($"Датата на заминаване ({value}) трябва да бъде след днешната дата - {now.ToString(DateTimeFormat)}");
                 }
                 departureTime = value;
             }
@@ -91,7 +93,7 @@ namespace FlightManagementSystem
         }
         public override string ToString()
         {
-            return $"{FlightID},{Destination},{DepartureTime.ToString("dd-MM-yy hh:mm")},{ArrivalTime.ToString("dd-MM-yy hh:mm")},{SeatsAvailable},{Price}";
+            return $"{FlightID},{Destination},{DepartureTime.ToString(DateTimeFormat)},{ArrivalTime.ToString(DateTimeFormat)},{SeatsAvailable},{Price}";
         }
         public void DecreaseSeats(int ticketsCount)
         {

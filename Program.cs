@@ -81,8 +81,8 @@ namespace FlightManagementSystem
                     string[] flightInfo = line.Split(',');
                     string flightId = flightInfo[0];
                     string destination = flightInfo[1];
-                    DateTime departureTime = DateTime.ParseExact(flightInfo[2], "dd-MM-yy hh:mm",CultureInfo.InvariantCulture);
-                    DateTime arrivalTime = DateTime.ParseExact(flightInfo[3], "dd-MM-yy hh:mm", CultureInfo.InvariantCulture);
+                    DateTime departureTime = DateTime.ParseExact(flightInfo[2], Flight.DateTimeFormat,CultureInfo.InvariantCulture);
+                    DateTime arrivalTime = DateTime.ParseExact(flightInfo[3], Flight.DateTimeFormat, CultureInfo.InvariantCulture);
                     int seatsAvailable = int.Parse(flightInfo[4]);
                     decimal price = decimal.Parse(flightInfo[5]);   
 
@@ -112,10 +112,11 @@ namespace FlightManagementSystem
         {
             Console.WriteLine($"\tНомер на полета: {flight.FlightID}");
             Console.WriteLine($"\tДо: {flight.Destination}");
-            Console.WriteLine($"\tИзлитане: {flight.DepartureTime.ToString("dd-MM-yy hh:mm")}");
-            Console.WriteLine($"\tКацане: {flight.ArrivalTime.ToString("dd-MM-yy hh:mm")}");
+            Console.WriteLine($"\tИзлитане: {flight.DepartureTime.ToString(Flight.DateTimeFormat)}");
+            Console.WriteLine($"\tКацане: {flight.ArrivalTime.ToString(Flight.DateTimeFormat)}");
             Console.WriteLine($"\tСвободни места: {flight.SeatsAvailable}");
             Console.WriteLine($"\tЦена: {flight.Price}");
+            AddLine();
         }
 
         private static void SearchFlight()
@@ -124,12 +125,22 @@ namespace FlightManagementSystem
             string filter = Console.ReadLine();
             AddLine();
 
-            Flight searchedFlight = flights
-                .FirstOrDefault(f => f.FlightID == filter || f.Destination == filter);
-
-            if(searchedFlight != null)
+            var searchedFlights = flights
+                .Where(f => f.FlightID == filter || f.Destination == filter)
+                .ToList();
+            if (searchedFlights.Count > 0)
             {
-                PrintFlightInfo(searchedFlight);
+                foreach (var flight in searchedFlights)
+                {
+                    if (searchedFlights != null)
+                    {
+                        PrintFlightInfo(flight);
+                    }
+                }
+            }
+            else
+            {
+                ShowResultMessage($"Търсеният полет не е намерен.");
             }
 
             BackToMenu();
