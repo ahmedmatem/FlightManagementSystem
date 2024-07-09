@@ -99,7 +99,7 @@ namespace FlightManagementSystem
         {
             if (SeatsAvailable<ticketsCount)
             {
-                Console.WriteLine("Няма толкова налични билети.");
+                Console.WriteLine("\tНяма толкова налични билети.");
                 return;
             }
             SeatsAvailable -= ticketsCount;

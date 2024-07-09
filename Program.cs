@@ -34,6 +34,7 @@ namespace FlightManagementSystem
                         AddNewFlight();
                         break;
                     case "2":
+                        ShowActionTitle("Купуване на билети\n\n\tВсички налични полети");
                         BuyTicket();
                         break;
                     case "3":
@@ -148,7 +149,34 @@ namespace FlightManagementSystem
 
         private static void BuyTicket()
         {
-            throw new NotImplementedException();
+            ListFlights();
+
+            Console.Write("\tВъведи номер на полет: ");
+            string flightId = Console.ReadLine();
+            if(FlightExists(flightId))
+            {
+                Flight selectedFlight = flights.FirstOrDefault(f => f.FlightID == flightId);
+                Console.WriteLine($"\tИзбрахте да закупите билет/и за полет {selectedFlight.FlightID} за {selectedFlight.Destination}");
+                Console.WriteLine($"\tЗа дата: {selectedFlight.DepartureTime.ToString(Flight.DateTimeFormat)}");
+                Console.WriteLine($"\tБрой свободни места: {selectedFlight.SeatsAvailable}");
+                Console.Write("\n\tВъведете броя на билетите, които ще закупите: ");
+                int ticketsCount = int.Parse( Console.ReadLine());
+                if(ticketsCount > selectedFlight.SeatsAvailable)
+                {
+                    Console.WriteLine($"\tЗаявили сте повече билети от свободните места за полет {selectedFlight.FlightID}");
+                }
+                else
+                {
+                    selectedFlight.DecreaseSeats(ticketsCount);
+                    Console.WriteLine($"\tПоздравления. Успешно закупихте {ticketsCount} билет/а/и за полет {selectedFlight.FlightID}");
+                    Console.WriteLine($"\tПожелаваме Ви приятен полет.");
+                    SaveFlights();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"\tНевалиден номер на полет: {flightId}");
+            }
         }
 
         private static void AddNewFlight()
@@ -206,9 +234,7 @@ namespace FlightManagementSystem
             catch (ArgumentException е)
             {
                 ShowResultMessage(е.Message);
-            }            
-
-            
+            }
         }
 
         private static bool FlightExists(string flightId)
